@@ -9,6 +9,9 @@ BOT_TOKEN = os.environ.get("BOT_TOKEN")
 
 OWNER_ID = 521241322
 
+YEP_BUTTON = "Done"
+NOPE_BUTTON = "🔔🔔🔔 Надо сделать 🔔🔔🔔"
+
 staffList = StaffList()
 
 bot = Bot(token=BOT_TOKEN)
@@ -21,10 +24,10 @@ async def button_handler(callback_query: agtypes.CallbackQuery):
 
     if (callback_query.data == "Nope"):
         markup.add(agtypes.InlineKeyboardButton(
-            "Сделано", callback_data="Yep"))
+            YEP_BUTTON, callback_data="Yep"))
     elif (callback_query.data == "Yep"):
         markup.add(agtypes.InlineKeyboardButton(
-            "🔔🔔🔔 Done 🔔🔔🔔", callback_data="Nope"))
+            NOPE_BUTTON, callback_data="Nope"))
 
     await callback_query.message.edit_reply_markup(reply_markup=markup)
 
@@ -43,7 +46,7 @@ async def loop():
         for x in added.items():
             markup = agtypes.InlineKeyboardMarkup()
             markup.add(agtypes.InlineKeyboardButton(
-                "🔔🔔🔔 Done 🔔🔔🔔", callback_data="Nope"))
+                NOPE_BUTTON, callback_data="Nope"))
 
             text = \
                 f"""
@@ -66,7 +69,7 @@ async def loop():
         for x in updated.items():
             markup = agtypes.InlineKeyboardMarkup()
             markup.add(agtypes.InlineKeyboardButton(
-                "🔔🔔🔔 Done 🔔🔔🔔", callback_data="Nope"))
+                NOPE_BUTTON, callback_data="Nope"))
 
             text1 = \
                 f"""
@@ -106,7 +109,7 @@ async def loop():
         for x in deleted.items():
             markup = agtypes.InlineKeyboardMarkup()
             markup.add(agtypes.InlineKeyboardButton(
-                "🔔🔔🔔 Done 🔔🔔🔔", callback_data="Nope"))
+                NOPE_BUTTON, callback_data="Nope"))
 
             text = \
                 f"""

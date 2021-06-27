@@ -5,3 +5,4 @@ Include
 Scripts
 Lib/site-packages
 pyvenv.cfg
+old.pickle
