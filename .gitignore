@@ -1,0 +1,7 @@
+__pycache__
+.vscode
+.env
+Include
+Scripts
+Lib/site-packages
+pyvenv.cfg
