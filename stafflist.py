@@ -13,14 +13,16 @@ class StaffList:
     def __init__(self, file_name="old.pickle"):
         self.file_name = file_name
 
+        self.update()
+
         try:
             with open(self.file_name, "rb") as file:
                 self.old = pickle.load(file)
         except:
-            print("No such file")
-            exit(0)
+            self.save()
+            print(f"{self.file_name} created.")
 
-        self.update()
+        
 
     def update(self):
         try:
