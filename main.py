@@ -5,6 +5,7 @@ from aiogram.types import callback_query
 from stafflist import *
 import os
 from dotenv import load_dotenv
+import socket
 
 
 load_dotenv()
@@ -38,6 +39,8 @@ async def button_handler(callback_query: agtypes.CallbackQuery):
 
 
 async def loop():
+
+    await bot.send_message(chat_id=OWNER_ID, text=f"<b>Bot started on <u>{socket.gethostname()}</u></b>", parse_mode="HTML")
 
     print(await bot.get_me())
 
