@@ -4,7 +4,11 @@ from aiogram import types as agtypes
 from aiogram.types import callback_query
 from stafflist import *
 import os
-from config_S import BOT_TOKEN
+from dotenv import load_dotenv
+
+
+load_dotenv()
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
 
 OWNER_ID = 521241322
 
