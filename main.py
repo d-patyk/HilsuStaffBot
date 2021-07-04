@@ -4,8 +4,7 @@ from aiogram import types as agtypes
 from aiogram.types import callback_query
 from stafflist import *
 import os
-
-BOT_TOKEN = os.environ.get("BOT_TOKEN")
+from config_S import BOT_TOKEN
 
 OWNER_ID = 521241322
 
@@ -35,6 +34,8 @@ async def button_handler(callback_query: agtypes.CallbackQuery):
 
 
 async def loop():
+
+    print(await bot.get_me())
 
     while True:
         staffList.update()
