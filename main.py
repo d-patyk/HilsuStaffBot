@@ -2,6 +2,7 @@ import asyncio
 from aiogram import Bot, Dispatcher, executor
 from aiogram import types as agtypes
 from aiogram.types import callback_query
+from attr import resolve_types
 from stafflist import *
 import os
 from dotenv import load_dotenv
@@ -9,6 +10,8 @@ import socket
 
 
 load_dotenv()
+
+PORT = int(os.environ.get("PORT"))
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 
 OWNER_ID = 521241322
@@ -88,7 +91,6 @@ async def loop():
 <b>Username</b> : {x[1][0].username if x[1][0].username == x[1][1].username else f"<s>{x[1][0].username}</s> <code>{x[1][1].username}</code>"}
 <b>Server</b> : {x[1][0].server if x[1][0].server == x[1][1].server else f"<s>{x[1][0].server}</s> <code>{x[1][1].server}</code>"}
 <b>Rank</b> : {x[1][0].rank if x[1][0].rank == x[1][1].rank else f"<s>{x[1][0].rank}</s> <code>{x[1][1].rank}</code>"}
-
 """
 
             if x[1][0].username == x[1][1].username:
@@ -141,6 +143,14 @@ async def loop():
 
         await asyncio.sleep(30)
 
-if __name__ == "__main__":
-    dp.loop.create_task(loop())
-    executor.start_polling(dp)
+
+async def on_startup(dp):
+    await bot.set_webhook(f"176.59.17.128/webhook", drop_pending_updates=True)
+
+
+dp.loop.create_task(loop())
+executor.start_polling(dp)
+# executor.start_webhook(dispatcher=dp, host="0.0.0.0", port=PORT,
+#                            webhook_path=f"/webhook/", on_startup=on_startup, skip_updates=True)
+
+# updater.bot.setWebhook('https://yourherokuappname.herokuapp.com/' + TOKEN)
